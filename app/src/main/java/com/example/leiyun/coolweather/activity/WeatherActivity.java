@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.leiyun.coolweather.R;
+import com.example.leiyun.coolweather.service.AutoUpdateService;
 import com.example.leiyun.coolweather.util.HttpCallbackListener;
 import com.example.leiyun.coolweather.util.HttpUtil;
 import com.example.leiyun.coolweather.util.Utility;
@@ -117,6 +118,8 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
         }
     }
 
+
+
     /**
      * 查询县级代号所对应的天气代号。
      */
@@ -190,5 +193,7 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
         currentDateText.setText(prefs.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
